@@ -1,6 +1,3 @@
----
-title: test
----
 
 # Gesture Based User Interface Protocol
 
