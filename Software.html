@@ -162,7 +162,9 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h4>Drums</h4>
-              <p class="lead"> The drum set is the original demo that we had planned for this 
+              <p class="lead"> The drum set is the original demo that we had planned for this system. This program generates a user selectable drums of a random color at the botom of the screen. It then calculates the hitbox coordinates for the drums and converts it to the address range in the detect memory buffer.
+              <br>
+              The program then prompts the user for a folder which is used to determine whcih subfolder (filled with its own set of wav files should be used as samples). These samples are then loaded into memory to play. Finaly the program looks through the regions in the relevent hitboxes and strart the coresponding sample if it hasn't been played in the last 1/4s.
           </div>
         </div>
       </div>
