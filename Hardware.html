@@ -165,7 +165,8 @@
                 blender module multiplies the foreground by a factor of 'a', making it transparent over the 
                 background. However, this method did not work correctly and would not result in overlay. 
                 Advised by Hunter, the team decided to manually overlay the HPS and video feed in Quartus, 
-                which functioned fine with our custom made VGA driver from Lab 3. One of the other issues we 
+                which functioned fine with our custom made VGA driver from Lab 3. This was done by adveraging 
+                the video-in with HPS video data whenever SW[1] is high. One of the other issues we 
                 faced in Qsys was the wrong ordering of the video in modules. For instance, we had the scaler 
                 module accidently placed above the Color Space Converter which outputted an unusual feed on 
                 the VGA screen.
