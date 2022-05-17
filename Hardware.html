@@ -133,7 +133,7 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h4>Video In</h4>
-              <p class="lead">The video in subsystem takes in the camera feed from the NTSC camera in YCrCb 4:4:4 format. Inside the video in subsystem, the YCrCb 4:4:4 feed gets goes through the Chroma Resampler and gets converted to 4:2:2 which drops half of the Cr and Cb values, alternating every pixel which value is dropped. Then, the data enters the video in CSC module (color space converter), where the YCrCb 4:2:2 feed gets converted to 16 bit RGB. The RGB resampler then converts the 16 bit RGB data into 8 bit RGB data. The clipper and the scaler modules modify the resolution of the video stream from 640 x 480 to 320 x 240. That is accomplished by increased or decreasing the stream’s height/width by a factor of. Then, the stream is placed into the DMA where it gets transmitted to the video in memory buffer (on-chip memory). 
+              <p class="lead">The video in subsystem takes in the camera feed from the NTSC camera in YCrCb 4:4:4 format. Inside the video in subsystem, the YCrCb 4:4:4 feed gets goes through the Chroma Resampler and gets converted to 4:2:2 which drops half of the Cr and Cb values, alternating every pixel which value is dropped. Then, the data enters the video in CSC module (color space converter), where the YCrCb 4:2:2 feed gets converted to 16 bit RGB. The RGB resampler then converts the 16 bit RGB data into 8 bit RGB data. The clipper and the scaler modules modify the resolution of the video stream from 720 x 244 to 320 x 240. That is accomplished by clipping the blank edges of the video feed to 640 x 240. The stream’s width is then scaled by a factor of 0.5 using the scaler module. Then, the stream is sent to the DMA where it gets transmitted to the video in memory buffer (on-chip memory). 
               <br>
               <img class="center-qsys" src="images/videoin.png" alt="Setup">
           </div>
@@ -157,7 +157,7 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h4>Color Detection</h4>
-              <p class="lead">
+              <p class="lead">The color detection system was the part of the project that requiered the most application specific tuning. We started off by processing the  video-in feed going to the overlay logic. Since the VGA feed is at a resolution of 640 x 480 that means that every pixel from the video buffer is sent to the screen 4 times. To mitigate this isue pixels are only blue if it's in the botom right corner of the 2x2 grid (x/y cordinates end in a 1). To determine if the pixel contains enough blue the B value from the RGB is compared to the G+R value. In order to tune the parameters without recompiling QSYS the G+R value is multiplied by the value from a PIO port and then added to the one in another. If the pixel is defined as blue it's added to the count of pixels in the region. The total number of blue pixels in the 8x8 square is put into the detect memory which has a second port on the HPS' heavyweight AXI bus.
           </div>
         </div>
       </div>
