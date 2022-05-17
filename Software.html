@@ -112,11 +112,22 @@
       </div>
     </header>
 
+    <section id="VGA">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h4>VGA</h4>
+              <p class="lead"> In this project the hardware video buffers were implemented with 16 bit color. This demanded a reduction of resolution for both video-in and the HPS graphics to 240p. This requiered modifing all of the video drawing code that we used to enforce this. Additionally the pixel calculations had to be changed slightly to account for the change in width for address calculating in the memory.
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="Sound" class="bg-light">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
-            <h4>Qsys Sound</h4>
+            <h4>Sound</h4>
               <p class="lead"> The sound library from this project is an easy to use method for playing samples on the De1. There are only two main functions in the library that need to be called (initAudio and startSound). The initAudio function sets up the sound envierment and the startSoud function sets a sample to play with a set volume (amplitude). Internally the library also uses two additional functions load and play as well as a struct sample. The sample struct contains all the infromtation that is requiered to play that particular sound sample. This includes a pointer to the region in memory where the actual sample is stored (as 32 bit signed numbers format) as the number of samples in the sound (length of the array). This struct also includes in the info for playing the current sample (the amplitude, current sampleNumber and if it's playing).
               <br>
               The init audio function first defines the pointers to the audio system on the axi bus and allocates space for storing all the sample structs. It then calls the load function for each of the samples passing a struct pointer as well as file name to load. Finally it creates a pthread for the play function to run it so other tasks can continue concurrently.
@@ -125,7 +136,7 @@
               <br>
               The play function is the most important one for the actuall library and runs in its own detecated thread. This function waits for there to be room in the fifo_buffer for the audio chip. It then goes trhough every sample adds its current sample magnitude (* amplitude) if its playing. The total magnatude of all samples is then sent to the DAC's fifo buffer for each channel.
               <br>
-              The last function (which is called most often) is startSound. This function just sets the parameters to start playing one of the samples. 
+              The last function (which is called most often) is startSound. This function sets the parameters to start playing one of the samples from the begining with the chosen amplitude.
           </div>
         </div>
       </div>
@@ -136,7 +147,11 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h4>Etch a Sketch</h4>
-              <p class="lead">
+              <p class="lead"> The etch a sketch is the first program that we created to demonstrate our hit detection system. The program is made up of a few parts all running in their own thread. The first is the sound thread outlined before. This is slightly modified to always play sample one on a loop as background music. There is also another sound that play whenever a pixel is filled in and one for when the screen is cleared.
+              <br>
+              The screen is cleared by the blank thread. This thread first truns off echo and canonical mode. This makes it so any keyboard inputs go directly to the program without waiting for a return/enter. This thread just blocks on waiting for any keyinput in the terminal. When one is recieved the terminal is cleared and repalaced with a success message, as well as the cleared sound being started and the VGA screen being wiped to transparent.
+              <br>
+              The most important thread is the one running the etch function itself. The function cycles through all the hitboxes and checks if any of them have at least the set number of pixels (limit) detected. If it is the function detToPix is used to determine what VGA corrdinates it coresponds to. These cordinates are filled in on the screen and a sound is played if they weren't colored previously.
           </div>
         </div>
       </div>
@@ -147,29 +162,20 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h4>Drums</h4>
-              <p class="lead">
+              <p class="lead"> The drum set is the original demo that we had planned for this system. This program generates a user selectable drums of a random color at the botom of the screen. It then calculates the hitbox coordinates for the drums and converts it to the address range in the detect memory buffer.
+              <br>
+              The program then prompts the user for a folder which is used to determine whcih subfolder (filled with its own set of wav files should be used as samples). These samples are then loaded into memory to play. Finaly the program looks through the regions in the relevent hitboxes and strart the coresponding sample if it hasn't been played in the last 1/4s.
           </div>
         </div>
       </div>
     </section>
 
-    <section id="DDR">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 mx-auto">
-            <h4>Dance Dance</h4>
-              <p class="lead">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="Image" class="bg-light">
+    <section id="Image">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h4>Image</h4>
-              <p class="lead">
+              <p class="lead"> The image drivers were the last application of the system that was set up. This utalizes a premade library found online to read PNG files and convert them into an array in memory. The data in these files is then read in the pixels that corespond to those that are displayed on the screen. The image data is convered from a standard 24bit RGB to the 16bit RGB that the graphics is using with a simple macro. This data is finaly simply copied over to the HPS video buffer.
           </div>
         </div>
       </div>
