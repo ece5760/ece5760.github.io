@@ -1,0 +1,342 @@
+
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@thezenelson
+ece5760 /
+ece5760.github.io
+Public
+
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+
+    Insights
+
+ece5760.github.io/index.html
+@spb228
+spb228 Update index.html
+Latest commit 6d79f04 11 minutes ago
+History
+2 contributors
+@spb228
+@ece5760
+297 lines (258 sloc) 13.1 KB
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ECE 5760 Final Project: Gesture Based User Interface</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+
+    <style type="text/css">
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+
+    .center-qsys {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    .center-ui {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+
+    .rotateimg180 {
+      -webkit-transform:rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+    </style>
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">ECE 5760 Final Project: Gesture Based User Interface</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#intro">Introduction</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#High Level Design">High Level Design</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#Hardware Design">Hardware Design</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#Software Design">Software Design</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#results">Results</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#Conclusion">Conclusion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#references">References</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#appendix-a">Appendices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#ack">Acknowledgements</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header style="background-color: #696969" class="text-white">
+      <div class="container text-center">
+        <h1>ECE 5760 Final Project: Gesture Based User Interface</h1>
+        <p class="lead">Zack Nelson (zen3), Raquel Taborga (rmt229), Swapnil Barot (spb228)</p>
+        <img class="center-qsys" src="images/setup.PNG" alt="Setup">
+      </div>
+    </header>
+
+    <section id="intro">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>Introduction</h2>
+            <p class="lead">test
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="High Level Design" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>High Level Design</h2>
+            <p class="lead">test
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Hardware Design">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>Hardware Design</h2>
+            <p class="lead"></p>
+            <h4>Qsys Implementation</h4>
+              <p class="lead">The Qsys component of the project is integral to the system’s functionality. Qsys essentially binds the system PLL with the logic to provide timing via the 25.175 Mhz clock, interconnects the ARM (HPS) to the FPGA via the heavyweight and lightweight axi busses, integrates the camera feed (video_in), audio subsystem, and memory buffers. 
+              <p class="lead">The top level Qsys module – De1SoC interconnects the system PLL, ARM, DMA address translator, video in subsystem (camera feed), memory buffers, audio subsystem, and debug PIO ports. When the program is activated from the HPS, the HPS sends a signal to the video in subsystem to turn on video capture via the light weight bus. There are three on-chip memory modules instantiated: video in memory buffer, detect memory buffer, and HPS memory buffer. The video in memory buffer stores the camera feed, the HPS memory buffer stores the graphics data, and the detect memory buffer holds the data that resembles which pixels have been flagged when blue (or red/green) is sensed. 
+              <br>
+              <img class="center-qsys" src="images/de1soc.png" alt="Setup">
+              <br>
+              <p class="lead">The video in subsystem takes in the camera feed from the NTSC camera in YCrCb 4:4:4 format. Inside the video in subsystem, the YCrCb 4:4:4 feed gets goes through the Chroma Resampler and gets converted to 4:2:2 which drops half of the Cr and Cb values, alternating every pixel which value is dropped. Then, the data enters the video in CSC module (color space converter), where the YCrCb 4:2:2 feed gets converted to 16 bit RGB. The RGB resampler then converts the 16 bit RGB data into 8 bit RGB data. The clipper and the scaler modules modify the resolution of the video stream from 640 x 480 to 320 x 240. That is accomplished by increased or decreasing the stream’s height/width by a factor of. Then, the stream is placed into the DMA where it gets transmitted to the video in memory buffer (on-chip memory). 
+              <br>
+              <img class="center-qsys" src="images/videoin.png" alt="Setup">
+              <br>
+              <p class="lead">Enabling the VGA scheme to function correctly was one of the most challenging aspects of this project. We started off using Bruce’s example “Video input from NTSC to on-chip-memory, then to SDRAM VGA using HPS, in 8-bit color”. To enable overlapping between the video feed and the HPS graphics, we tried to use the alpha blender module Qsys that revolves around combining two video streams into one. The video in would be considered background while the HPS graphics feed would be considered foreground. The alpha blender module multiples the foreground by a factor of a, making it transparent over the background. However, this method did not work correctly and would not result in overlay. Advised by Hunter, the team decided to manually overlay the HPS and video feed in Quartus, which functioned fine with our custom made VGA driver from Lab 3. One of the other issues we faced in Qsys was the wrong ordering of the video in modules. For instance, we had the scaler module accidently placed above the Color Space Converter which outputted an unusual feed on the VGA screen. 
+              <br>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="Software Design" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>Software Design</h2>
+            <p class="lead">test
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>Results</h2>
+            <p class="lead">Several fascinating results were obtained as an outcome of our successful project. To gain these results, thorough testing and analysis had to be completed in order to pinpoint bugs and resolve issues. Testing the video system (video in and VGA output) was mostly accomplished by trial and error. W developed and tuned several video modules in Qsys such as the chroma resampler, alpha blender, color space converter, RGB resampler, clipper, and scaler until the desired outcomes were reached. For example, to convert incoming YCrCb stream to RGB, we tested different RGB formats (8-bit, 16 bit, 30 bit) and the one that outputted the highest quality stream without taking up too much memory. </p>
+            <br>
+            <p class="lead">One of the most important tests that we ran was checking the amount of blue pixels in a certain spot on the screen to determine if the color detection algorithm on the FPGA actually functions or not. To do this, we drew a small circle on the screen from the HPS as shown in the image below and pointed a blue object such that it would show up inside the circle on the screen. Then, using a debug PIO port from Quartus, we printed the output of the RGB values inside that circle as shown in the image below. As seen, the blue values are clearly larger than the red and the green, implying that the program is able to detect the blue pixels. 
+            <br>
+            <img class="center-qsys" src="images/testing_1.jpg" alt="Setup">
+            <br>
+            <img class="center-qsys" src="images/testing_2.jpg" alt="Setup">
+            <br>
+            <img class="center-qsys" src="images/hps_graphics.jpg" alt="Setup">
+            <p class="lead">test</p>
+            <br>
+            <img class="center-qsys" src="images/transparent_graphics.jpg" alt="Setup">
+            <p class="lead">test</p>
+            <br>
+            <img class="center-qsys" src="images/opaque_graphics.jpg" alt="Setup">
+            <p class="lead">test</p>
+            <br>
+            <img class="center-qsys" src="images/team_photo.jpg" alt="Setup">
+            <br>
+            
+           
+          </div>
+        </div>
+      </div>
+    </section>
+      
+      <section id="Conclusion">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>Conclusion</h2>
+            <p class="lead">test</p>
+            <br>
+            
+           
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="references" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>References</h2>
+            <p class="lead"><a href="https://hackaday.io/project/27639-rainman-20-blackjack-robot">[1] Blackjack robot on RaspberryPi using OpenCV.</a></p>
+        
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="appendix-a">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>Appendix A: Permissions</h2>
+            <p class="lead">This group approves this report for inclusion on the course website.</p>
+            <p class="lead">This group approves the video for inclusion on the course YouTube channel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="appendix-b" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>Appendix B: Source Code</h2>
+            <p class="lead"> Project source code can be found at our github at the following link: <a href="https://github.coecis.cornell.edu/spb228/ECE5760_Team18">Github - Team 18.</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="appendix-c">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>Appendix C: Work Distribution</h2>
+            <p class="lead">test</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ack">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h2>Acknowledgements</h2>
+            <p class="lead">The team would like to thank Dr. Hunter Adams and Prof. Bruce Land for their assistance throughout the course.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Cornell University, ECE 5760 (Spring 2022)</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+
+  </body>
+
+</html>
+
+    © 2022 GitHub, Inc.
+
+    Terms
+    Privacy
+    Security
+    Status
+    Docs
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
