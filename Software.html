@@ -112,6 +112,17 @@
       </div>
     </header>
 
+    <section id="VGA">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <h4>VGA</h4>
+              <p class="lead"> In this project the hardware video buffers were implemented with 16 bit color. This demanded a reduction of resolution for both video-in and the HPS graphics to 240p. This requiered modifing all of the video drawing code that we used to enforce this. Additionally the pixel calculations had to be changed slightly to account for the change in width for address calculating in the memory.
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="Sound" class="bg-light">
       <div class="container">
         <div class="row">
@@ -140,7 +151,7 @@
               <br>
               The screen is cleared by the blank thread. This thread first truns off echo and canonical mode. This makes it so any keyboard inputs go directly to the program without waiting for a return/enter. This thread just blocks on waiting for any keyinput in the terminal. When one is recieved the terminal is cleared and repalaced with a success message, as well as the cleared sound being started and the VGA screen being wiped to transparent.
               <br>
-              The most important thread is the one running the etch function itself. The function cycles through all the hitboxes and checks if any of them have at least the 
+              The most important thread is the one running the etch function itself. The function cycles through all the hitboxes and checks if any of them have at least the set number of pixels (limit) detected. If it is the function detToPix is used to determine what VGA corrdinates it coresponds to. These cordinates are filled in on the screen and a sound is played if they weren't colored previously.
           </div>
         </div>
       </div>
@@ -151,40 +162,18 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h4>Drums</h4>
-              <p class="lead">
+              <p class="lead"> The drum set is the original demo that we had planned for this 
           </div>
         </div>
       </div>
     </section>
 
-    <section id="DDR">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 mx-auto">
-            <h4>Dance Dance</h4>
-              <p class="lead">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="Image" class="bg-light">
+    <section id="Image">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h4>Image</h4>
-              <p class="lead">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="Image" class="bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 mx-auto">
-            <h4>Image</h4>
-              <p class="lead">
+              <p class="lead"> The image drivers were the last application of the 
           </div>
         </div>
       </div>
