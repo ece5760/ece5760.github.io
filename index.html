@@ -177,7 +177,13 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h2>Results</h2>
-            <p class="lead">test</p>
+            <p class="lead">Several fascinating results were obtained as an outcome of our successful project. To gain these results, thorough testing and analysis had to be completed in order to pinpoint bugs and resolve issues. Testing the video system (video in and VGA output) was mostly accomplished by trial and error. W developed and tuned several video modules in Qsys such as the chroma resampler, alpha blender, color space converter, RGB resampler, clipper, and scaler until the desired outcomes were reached. For example, to convert incoming YCrCb stream to RGB, we tested different RGB formats (8-bit, 16 bit, 30 bit) and the one that outputted the highest quality stream without taking up too much memory. </p>
+            <br>
+            <p class="lead">One of the most important tests that we ran was checking the amount of blue pixels in a certain spot on the screen to determine if the color detection algorithm on the FPGA actually functions or not. To do this, we drew a small circle on the screen from the HPS as shown in the image below and pointed a blue object such that it would show up inside the circle on the screen. Then, using a debug PIO port from Quartus, we printed the output of the RGB values inside that circle as shown in the image below. As seen, the blue values are clearly larger than the red and the green, implying that the program is able to detect the blue pixels. 
+            <br>
+            <img class="center-qsys" src="images/testing_1.jpg" alt="Setup">
+            <br>
+            <img class="center-qsys" src="images/testing_2.jpg" alt="Setup">
             <br>
             <img class="center-qsys" src="images/hps_graphics.jpg" alt="Setup">
             <p class="lead">test</p>
