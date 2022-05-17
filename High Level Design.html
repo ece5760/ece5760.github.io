@@ -116,7 +116,7 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h3>VGA Driver: Getting the VGA display to show graphics and video</h3>
-            <p>
+            <p class="lead">
               The FPGA must communicate with the camera to
               stream in image data. This data is saved on a memory buffer, and we use this input to do image processing
               computations in Verilog. We also need a method to project this video (which to the FPGA is a matrix of values)
@@ -124,7 +124,7 @@
               VGA driver to essentially parse the camera input data and store it in a way that the VGA driver module could
               quickly read. We also had to mirror the video to create a system that was more intuitive for the user.
             </p>
-            <p>
+            <p class="lead">
               The second part required us to be able to display graphics from the ARM processor (HPS) simultaneously with
               the video stream. This was accomplished by drawing a weighted average of both inputs. For example, the pixel 
               value displayed on the VGA screen could be one half the value from the camera input, and one half the value 
@@ -141,7 +141,7 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h3>FPGA Color Detection</h3>
-            <p>
+            <p class="lead">
               The color detection algorithm parses through the camera input by reading each value from the 
               memory buffer. Using bitwise operations on the RGB values, we determined that a pixel-square is 
               red enough if there is more red than green and blue combined, multiplied by a factor. We later changed
@@ -159,12 +159,12 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h3>HPS: Implementing game logic, hit detection, and sounds</h3>
-            <p>
+            <p class="lead">
               The third part of the system was our C code running on the ARM processor on the DE1-SoC FPGA.
               Here, we parsed certain values from the 30x40 matrix (sent from the FPGA) depending on the game 
               we were running. 
             </p>
-            <p> 
+            <p class="lead"> 
               Our drum/guitar program is modular. You can initiate numDrum number of drum circles, as many as you 
               have audio wav files for, and that number of circles will be generated with a random color, evenly 
               spaced, with their own hit box to determine if the drumstick is within the bounds of the drum. 
@@ -182,7 +182,7 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h3>Environment: Creating a device that works in the real world </h3>
-            <p>
+            <p class="lead">
               This wasn't a submodule of the project, but guided a lot of our design choices. 
               Like all ECE projects, we work in the real world, where cameras are noisy, people move unpredictably,
               and latency exists. The color detection algorithm, for example, was found by trial and error. 
