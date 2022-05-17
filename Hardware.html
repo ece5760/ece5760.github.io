@@ -108,7 +108,7 @@
         <h1>ECE 5760 Final Project: Gesture Based User Interface</h1>
         <h2>Hardware</h2>
         <br>
-        <img class="center-qsys" src="images/setup.PNG" alt="Setup">
+        <!-- <img class="center-qsys" src="images/setup.PNG" alt="Setup"> -->
       </div>
     </header>
 
@@ -119,8 +119,18 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h4>Qsys Implementation</h4>
-              <p class="lead">The Qsys component of the project is integral to the system’s functionality. Qsys essentially binds the system PLL with the logic to provide timing via the 25.175 Mhz clock, interconnects the ARM (HPS) to the FPGA via the heavyweight and lightweight axi busses, integrates the camera feed (video_in), audio subsystem, and memory buffers. 
-              <p class="lead">The top level Qsys module – De1SoC interconnects the system PLL, ARM, DMA address translator, video in subsystem (camera feed), memory buffers, audio subsystem, and debug PIO ports. When the program is activated from the HPS, the HPS sends a signal to the video in subsystem to turn on video capture via the light weight bus. There are three on-chip memory modules instantiated: video in memory buffer, detect memory buffer, and HPS memory buffer. The video in memory buffer stores the camera feed, the HPS memory buffer stores the graphics data, and the detect memory buffer holds the data that resembles which pixels have been flagged when blue (or red/green) is sensed. 
+              <p class="lead">The Qsys component of the project is integral to the system’s functionality. 
+                Qsys essentially the system PLL with the logic to provide timing via the 25.175 Mhz 
+                clock, interconnects the ARM processor (HPS) to the FPGA via the heavyweight and lightweight 
+                axi busses, and integrates the camera feed (video_in), audio subsystem, and memory buffers. 
+              <p class="lead">The top level Qsys module - De1SoC - interconnects the system PLL, ARM, DMA 
+                address translator, video_in subsystem (camera feed), memory buffers, audio subsystem, 
+                and debug PIO ports. When the program is activated from the HPS, the HPS sends a signal to the 
+                video in subsystem to turn on video capture via the lightweight bus. There are three on-chip 
+                memory modules instantiated: video in memory buffer, detect memory buffer, and HPS memory 
+                buffer. The video in memory buffer stores the camera feed, the HPS memory buffer stores the 
+                graphics data, and the detect memory buffer holds the data that resembles which pixels have 
+                been flagged when blue (or red/green) is sensed. 
               <br>
               <img class="center-qsys" src="images/de1soc.png" alt="Setup">
           </div>
@@ -133,7 +143,16 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h4>Video In</h4>
-              <p class="lead">The video in subsystem takes in the camera feed from the NTSC camera in YCrCb 4:4:4 format. Inside the video in subsystem, the YCrCb 4:4:4 feed gets goes through the Chroma Resampler and gets converted to 4:2:2 which drops half of the Cr and Cb values, alternating every pixel which value is dropped. Then, the data enters the video in CSC module (color space converter), where the YCrCb 4:2:2 feed gets converted to 16 bit RGB. The RGB resampler then converts the 16 bit RGB data into 8 bit RGB data. The clipper and the scaler modules modify the resolution of the video stream from 640 x 480 to 320 x 240. That is accomplished by increased or decreasing the stream’s height/width by a factor of. Then, the stream is placed into the DMA where it gets transmitted to the video in memory buffer (on-chip memory). 
+              <p class="lead">The video in subsystem takes in the camera feed from the NTSC camera in 
+                YCrCb 4:4:4 format. Inside the video in subsystem, the YCrCb 4:4:4 feed gets goes through 
+                the Chroma Resampler and gets converted to 4:2:2 which drops half of the Cr and Cb values, 
+                alternating every pixel which value is dropped. Then, the data enters the video in CSC module 
+                (color space converter), where the YCrCb 4:2:2 feed gets converted to 16 bit RGB. The RGB 
+                resampler then converts the 16 bit RGB data into 8 bit RGB data. The clipper and the scaler 
+                modules modify the resolution of the video stream from 640 x 480 to 320 x 240. That is 
+                accomplished by increasing or decreasing the stream’s height/width by a factor of. 
+                Then, the stream is placed into the DMA where it gets transmitted to the video in memory 
+                buffer (on-chip memory). 
               <br>
               <img class="center-qsys" src="images/videoin.png" alt="Setup">
           </div>
@@ -146,7 +165,19 @@
         <div class="row">
           <div class="col-lg-12 mx-auto">
             <h4>VGA Driver</h4>
-              <p class="lead">Enabling the VGA scheme to function correctly was one of the most challenging aspects of this project. We started off using Bruce’s example “Video input from NTSC to on-chip-memory, then to SDRAM VGA using HPS, in 8-bit color”. To enable overlapping between the video feed and the HPS graphics, we tried to use the alpha blender module Qsys that revolves around combining two video streams into one. The video in would be considered background while the HPS graphics feed would be considered foreground. The alpha blender module multiples the foreground by a factor of a, making it transparent over the background. However, this method did not work correctly and would not result in overlay. Advised by Hunter, the team decided to manually overlay the HPS and video feed in Quartus, which functioned fine with our custom made VGA driver from Lab 3. One of the other issues we faced in Qsys was the wrong ordering of the video in modules. For instance, we had the scaler module accidently placed above the Color Space Converter which outputted an unusual feed on the VGA screen.
+              <p class="lead">Enabling the VGA scheme to function correctly was one of the most challenging 
+                aspects of this project. We started off using Bruce’s example “Video input from NTSC to 
+                on-chip-memory, then to SDRAM VGA using HPS, in 8-bit color”. To enable overlapping 
+                between the video feed and the HPS graphics, we tried to use the alpha blender module 
+                Qsys that revolves around combining two video streams into one. The video in would be 
+                considered background while the HPS graphics feed would be considered foreground. The alpha 
+                blender module multiplies the foreground by a factor of 'a', making it transparent over the 
+                background. However, this method did not work correctly and would not result in overlay. 
+                Advised by Hunter, the team decided to manually overlay the HPS and video feed in Quartus, 
+                which functioned fine with our custom made VGA driver from Lab 3. One of the other issues we 
+                faced in Qsys was the wrong ordering of the video in modules. For instance, we had the scaler 
+                module accidently placed above the Color Space Converter which outputted an unusual feed on 
+                the VGA screen.
           </div>
         </div>
       </div>
